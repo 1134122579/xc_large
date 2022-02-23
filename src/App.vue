@@ -1,12 +1,25 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div class="headerStyle">
+      <HeaderNav />
     </div>
-    <router-view />
+    <div class="contentstyle">
+      <transition>
+        <router-view />
+      </transition>
+    </div>
   </div>
 </template>
+
+<script>
+import HeaderNav from "@/components/HeaderNav/index.vue";
+
+export default {
+  components: {
+    HeaderNav,
+  },
+};
+</script>
 
 <style lang="less">
 #app {
@@ -14,19 +27,24 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+  color: #233344;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  .headerStyle {
+    width: 100%;
+    flex-shrink: 0;
+  }
+  .contentstyle {
+    flex: 1;
+    flex-shrink: 0;
+    width: 100%;
+    box-sizing: border-box;
+    background: #fafafa;
+    overflow: hidden;
   }
 }
 </style>

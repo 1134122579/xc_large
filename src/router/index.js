@@ -19,6 +19,20 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
+  {
+    path: "/xpp",
+    name: "xpp",
+    component: () => import("@/views/xpp.vue"),
+  },
+  {
+    path: "/Wwq",
+    name: "Wwq",
+    component: () => import("@/views/Wwq.vue"),
+  },
+  {
+    path: "*",
+    redirect: "/",
+  },
 ];
 
 const router = new VueRouter({
