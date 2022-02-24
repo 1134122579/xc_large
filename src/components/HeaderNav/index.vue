@@ -88,21 +88,11 @@ export default {
           children: [
             {
               id: "5-1",
-              title: "天橙图片",
-              to: "/Wwq",
+              title: "我们做什么",
+              to: "/about",
             },
             {
               id: "5-2",
-              title: "天橙视频",
-              to: "/Wwq",
-            },
-            {
-              id: "5-3",
-              title: "天橙文案",
-              to: "/Wwq",
-            },
-            {
-              id: "5-4",
               title: "联系我们",
               to: "/Wwq",
             },
@@ -152,6 +142,8 @@ export default {
     flex-wrap: nowrap;
     font-weight: 600;
     height: 40px;
+    cursor: pointer;
+
     .yzxq_logo {
       height: 50px;
     }
@@ -163,10 +155,9 @@ export default {
       position: relative;
       box-sizing: border-box;
       border-radius: 5px;
+      font-size: 18px;
       &:hover {
-        box-shadow: 0 0 8px rgba(204, 190, 190, 0.767),
-          0 0 8px rgba(204, 190, 190, 0.767), 0 0 8px rgba(204, 190, 190, 0),
-          0 0 8px rgba(204, 190, 190, 0.767);
+        box-shadow: 0 0 8px rgba(204, 190, 190, 0.767);
         .childrenUl {
           display: block;
           box-shadow: 3px 3px 8px rgba(204, 190, 190, 0.767);
@@ -182,11 +173,12 @@ export default {
         position: absolute;
         width: 120px;
         z-index: 99;
-
         li {
           width: 100%;
           height: 40px;
+          font-size: 16px;
           line-height: 40px;
+          font-weight: normal;
         }
       }
     }

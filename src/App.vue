@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <div class="headerStyle">
+    <!-- <div class="headerStyle">
       <HeaderNav />
     </div>
     <div class="contentstyle">
-      <transition>
-        <router-view />
-      </transition>
-    </div>
+      <transition> -->
+    <router-view />
+    <!-- </transition>
+    </div> -->
   </div>
 </template>
 
@@ -46,5 +46,45 @@ export default {
     background: #fafafa;
     overflow: hidden;
   }
+}
+.flexcontent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flexcolumn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+/*修改某个div的滚动条样式*/
+&::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  /**/
+}
+&::-webkit-scrollbar-track {
+  background: #fff;
+  border-radius: 2px;
+}
+&::-webkit-scrollbar-thumb {
+  background: #fdb732;
+  border-radius: 10px;
+}
+&::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+&::-webkit-scrollbar-corner {
+  background: #204754;
+}
+.ani {
+  transition: all 0.5s ease-out;
+  /* 过度 所有css属性 1秒过度 结束慢*/
+  -moz-transition: all 0.5s ease-out;
+  /* Firefox 4 */
+  -webkit-transition: all 0.5s ease-out;
+  /* Safari 和 Chrome */
+  -o-transition: all 0.5s ease-out;
 }
 </style>

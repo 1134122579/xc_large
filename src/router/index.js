@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import Layout from "@/layout/index.vue";
 
 Vue.use(VueRouter);
 
@@ -11,23 +12,38 @@ const routes = [
     component: Home,
   },
   {
+    path: "/content",
+    name: "content",
+    component: Layout,
+    redirect: "/xpp",
+    children: [
+      {
+        path: "xpp",
+        name: "xpp",
+        component: () => import("@/views/xpp.vue"),
+      },
+      {
+        path: "Wwq",
+        name: "Wwq",
+        component: () => import("@/views/Wwq.vue"),
+      },
+      {
+        path: "about",
+        name: "About",
+        component: () => import("@/views/About.vue"),
+      },
+    ],
+  },
+  // {
+  //   path: "/",
+  //   name: "Home",
+  //   component: Home,
+  // },
+  {
     path: "/about",
     name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
-  },
-  {
-    path: "/xpp",
-    name: "xpp",
-    component: () => import("@/views/xpp.vue"),
-  },
-  {
-    path: "/Wwq",
-    name: "Wwq",
-    component: () => import("@/views/Wwq.vue"),
   },
   {
     path: "*",

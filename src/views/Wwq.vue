@@ -78,8 +78,6 @@ export default {
 
 <style lang="less" scoped>
 .wwqPage {
-  height: 100%;
-  overflow: hidden;
   box-sizing: border-box;
   display: flex;
   justify-content: flex-start;
@@ -103,6 +101,9 @@ export default {
     justify-content: space-around;
     align-items: flex-start;
     box-sizing: border-box;
+    background: url("../assets/bgimage/wwq_bg.png") no-repeat;
+    background-size: auto 400px;
+    background-position: left bottom;
     .wwqleft {
       width: 44%;
       height: 100%;
@@ -111,7 +112,7 @@ export default {
       font-size: 24px;
       box-sizing: border-box;
       line-height: 1.5;
-      margin-top: 240px;
+      margin-top: 140px;
       .onep {
         text-align: left;
         display: inline-block;
@@ -140,13 +141,13 @@ export default {
       padding: 0 80px;
       .listStyle {
         width: 100%;
-        height: 100%;
+        height: 74vh;
         overflow-y: auto;
         box-sizing: border-box;
         overflow-y: auto;
         .block {
           text-align: left;
-          border: 2px solid #ccc;
+          border: 2px solid rgba(211, 199, 199, 0.753);
           height: 180px;
           margin: 20px;
           // width: 100%;
@@ -155,7 +156,19 @@ export default {
           justify-content: flex-start;
           align-items: flex-start;
           padding: 20px;
+          border-radius: 5px;
           box-sizing: border-box;
+          transition: all 0.5s ease-out;
+          /* 过度 所有css属性 1秒过度 结束慢*/
+          -moz-transition: all 0.5s ease-out;
+          /* Firefox 4 */
+          -webkit-transition: all 0.5s ease-out;
+          /* Safari 和 Chrome */
+          -o-transition: all 0.5s ease-out;
+          &:hover {
+            transform: rotate(1.5, 1.5);
+            box-shadow: 0 0 10px #797979;
+          }
           .block_l {
             flex-shrink: 0;
             width: 180px;
@@ -220,6 +233,24 @@ export default {
         }
       }
     }
+  }
+  img:hover {
+    transform: scale(1.5, 1.5);
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 5px;
+    transition: all 0.6s ease-out;
+    /* 过度 所有css属性 1秒过度 结束慢*/
+    -moz-transition: all 0.6s ease-out;
+    /* Firefox 4 */
+    -webkit-transition: all 0.6s ease-out;
+    /* Safari 和 Chrome */
+    -o-transition: all 0.6s ease-out;
+    /* Opera */
   }
 }
 </style>

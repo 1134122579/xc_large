@@ -1,36 +1,19 @@
 <template>
   <div class="box">
-    <div class="swiperContent">
-      <div class="swiper-wrapper">
-        <div
-          class="swiper-slide"
-          v-for="(item, index) in datalist"
-          :key="index"
-        >
-          <div class="pagecontent" :style="item.cover | filterBack"></div>
-        </div>
-      </div>
-      <!--分页器。如果放置在swiper-container外面，需要自定义样式。-->
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
-    </div>
+    <SwiperModel :list="datalist" />
   </div>
 </template>
 <script>
 // import { getDesigner } from "@/api/swiperApi.js";
-import Swiper from "swiper";
-import "swiper/css/swiper.min.css";
+import SwiperModel from "@/components/SwiperModel/index.vue";
 export default {
   filters: {
     filterBack(data) {
       return `background-image: url('${data}')`;
     },
   },
-  props: {
-    swiperID: {
-      type: String,
-      default: "swiper-container" + new Date().getTime() + "  swiperContent",
-    },
+  components: {
+    SwiperModel,
   },
   data() {
     return {

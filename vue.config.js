@@ -4,7 +4,7 @@ const path = require("path");
 function resolve(dir) {
   return path.join(__dirname, dir);
 }
-const name = "天空之橙·Design"; // page title
+const name = "天空之橙"; // page title
 
 const port = process.env.port || process.env.npm_config_port || 9527; // dev port
 
