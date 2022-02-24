@@ -42,13 +42,14 @@
       <!-- 中间 -->
       <div class="main containerblock">
         <div class="main_top flexcontent">
-          <div class="dl_block">
+          <div class="dl_block flexcolumn">
             <div class="zx_title">
               <img class="icon" src="../assets/bgimage/dw_icon.png" alt="" />
               空间导览
             </div>
-            <div class="dl_container">
-              <p>了解详情</p>
+            <div class="dl_container flexcolumn">
+              <div class="dl_containerswiper"></div>
+              <p class="ljxq">了解详情</p>
             </div>
           </div>
           <div class="dl_list">
@@ -58,22 +59,24 @@
                 <p>关于我们</p>
               </li>
               <li class="flexcolumn">
-                <img src="../assets/bgimage/about.png" alt="" />
+                <img src="../assets/bgimage/wwq.png" alt="" />
                 <p>微文圈</p>
               </li>
               <li class="flexcolumn">
-                <img src="../assets/bgimage/about.png" alt="" />
+                <img src="../assets/bgimage/kjz.png" alt="" />
                 <p>空间站</p>
               </li>
               <li class="flexcolumn">
-                <img src="../assets/bgimage/about.png" alt="" />
+                <img src="../assets/bgimage/qywh.png" alt="" />
                 <p>企业文化</p>
               </li>
             </ul>
           </div>
         </div>
         <!-- 最新活动 -->
-        <div class="newactivity"></div>
+        <div class="newactivity">
+          <p class="title">最新活动</p>
+        </div>
       </div>
       <!-- 打卡图集 -->
       <div class="right flexcolumn">
@@ -139,6 +142,7 @@ export default {
 
 <style scoped lang="less">
 .homepage {
+  letter-spacing: 4px;
   background: #ececec;
   width: 100%;
   height: 100%;
@@ -251,6 +255,28 @@ export default {
           box-shadow: 10px 10px 10px #c0bfbf;
           box-sizing: border-box;
           padding: 20px;
+          .zx_title {
+            width: 100%;
+          }
+          .dl_container {
+            flex: 1;
+            box-sizing: border-box;
+            padding: 10px 0;
+            width: 100%;
+            .dl_containerswiper {
+              flex: 1;
+              width: 100%;
+              background: #94a4c8;
+              border-radius: 5px;
+            }
+            .ljxq {
+              background: #94a4c8;
+              color: #fff;
+              margin-top: 10px;
+              padding: 5px 10px;
+              border-radius: 5px;
+            }
+          }
         }
         .dl_list {
           width: 50%;
@@ -285,6 +311,17 @@ export default {
         flex-shrink: 0;
         border-radius: 10px;
         box-shadow: 10px 10px 10px #c0bfbf;
+        position: relative;
+        .title {
+          background: #94a4c8;
+          position: absolute;
+          padding: 8px 14px;
+          border-radius: 5px;
+          color: #fff;
+          letter-spacing: 5px;
+          top: -14px;
+          left: 30px;
+        }
       }
     }
 
