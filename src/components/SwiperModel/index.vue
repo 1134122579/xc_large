@@ -6,13 +6,16 @@
         v-for="(item, index) in list"
         :key="index"
       >
-        {{ item.title }}
-        <!-- <img :src="item.cover" alt="" srcset="" /> -->
+        <div class="SwiperModelcontentStyle" :style="item.cover | filterBack">
+          <!-- <img :src="item.cover" alt="" srcset="" /> -->
+        </div>
       </swiper-slide>
       <!-- 分页器 -->
       <div class="swiper-pagination" slot="pagination"></div>
-      <div class="swiper-button-prev" slot="button-prev"></div>
-      <div class="swiper-button-next" slot="button-next"></div>
+      <div v-show="isbutton">
+        <div class="swiper-button-prev" slot="button-prev"></div>
+        <div class="swiper-button-next" slot="button-next"></div>
+      </div>
     </swiper>
     <!-- <swiper
           :options="swiperOption1"
@@ -35,6 +38,7 @@
 
 <script>
 import SwiperMpdel from "@/components/SwiperModel/index.vue";
+import { parseTime } from "@/utils/index.js";
 export default {
   name: "SwiperModel",
   components: {
@@ -45,11 +49,31 @@ export default {
       type: Array,
       default: [],
     },
+    isbutton: {
+      type: Boolean,
+      default: true,
+    },
+    isautoplay: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  filters: {
+    filterBack(data) {
+      return `background-image: url('${data}')`;
+    },
   },
   data() {
     return {
       swiperOption: {
         loop: true,
+        autoplay: {
+          //swiper手动滑动之后自动轮播失效的解决方法,包括触碰，拖动，点击pagination,重新启动自动播放
+          //   disableOnInteraction: false,
+          disableOnInteraction: false,
+          // 自动播放时间：毫秒
+          delay: 6000,
+        },
         navigation: {
           prevEl: ".swiper-button-prev",
           nextEl: ".swiper-button-next",
@@ -67,6 +91,7 @@ export default {
     };
   },
   methods: {
+
     del() {
       this.item--;
     },
@@ -81,7 +106,6 @@ export default {
 .SwiperModel {
   width: 100%;
   height: 100%;
-  background: cadetblue;
   box-sizing: border-box;
   .swiper-container-par {
     width: 100%;
@@ -91,6 +115,18 @@ export default {
     .swiper-slide {
       width: 100%;
       height: 100%;
+      .SwiperModelcontentStyle {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: 50%;
+        background-repeat: no-repeat;
+      }
+      // img {
+      //   width: 100%;
+      //   height: 100%;
+      //   object-fit: cover;
+      // }
     }
     .swiper-container-child {
       height: 100%;
