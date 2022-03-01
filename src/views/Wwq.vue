@@ -10,19 +10,43 @@
       </div>
       <div class="wwqright">
         <ul class="listStyle">
-          <li v-for="(item, index) in list" :key="index" class="block">
+          <li
+            v-for="(item, index) in list"
+            :key="index"
+            class="block"
+            @click="hanlLook(item)"
+          >
             <div class="block_l" :style="item.cover | filterBack"></div>
             <div class="block_r">
               <h5>{{ item.title }}</h5>
-              <p>{{ item.desc }}</p>
+              <p v-html="item.desc"></p>
             </div>
           </li>
         </ul>
       </div>
     </div>
+    <el-dialog
+      :title="lookobj.title"
+      :visible.sync="centerDialogVisible"
+      width="30%"
+      center
+    >
+      <!-- :src="lookobj.url" -->
+      <div class="iframeContent">
+        <iframe
+          v-if="centerDialogVisible"
+          marginwidth="0"
+          marginheight="0"
+          scrolling="no"
+          src="https://mp.weixin.qq.com/s/oer2EzmLciyY79lKqyVUdA"
+          frameborder="0"
+        ></iframe>
+      </div>
+    </el-dialog>
   </div>
 </template>
 <script>
+import { getWwq } from "@/api/wwq.js";
 export default {
   filters: {
     filterBack(data) {
@@ -31,6 +55,8 @@ export default {
   },
   data() {
     return {
+      centerDialogVisible: false,
+      lookobj: { title: "" },
       list: [
         {
           title: "新浪网络大V齐聚「天空之橙」聚焦“五好”城市宣传推介",
@@ -72,6 +98,21 @@ export default {
         },
       ],
     };
+  },
+  created() {
+    this.getWwq();
+  },
+  methods: {
+    hanlLook(data) {
+      this.lookobj = data;
+
+      this.centerDialogVisible = true;
+    },
+    async getWwq() {
+      let res = await getWwq();
+      console.log(res);
+      this.list = res;
+    },
   },
 };
 </script>
@@ -146,6 +187,7 @@ export default {
         box-sizing: border-box;
         overflow-y: auto;
         .block {
+          cursor: pointer;
           text-align: left;
           border: 2px solid rgba(211, 199, 199, 0.753);
           height: 180px;
@@ -200,7 +242,7 @@ export default {
               border-radius: 2px;
             }
             &::-webkit-scrollbar-thumb {
-              background: #fdb732;
+              background: #333;
               border-radius: 10px;
             }
             &::-webkit-scrollbar-thumb:hover {
@@ -222,7 +264,7 @@ export default {
           border-radius: 2px;
         }
         &::-webkit-scrollbar-thumb {
-          background: #fdb732;
+          background: #333;
           border-radius: 10px;
         }
         &::-webkit-scrollbar-thumb:hover {
@@ -251,6 +293,10 @@ export default {
     /* Safari 和 Chrome */
     -o-transition: all 0.6s ease-out;
     /* Opera */
+  }
+  .iframeContent {
+    width: 100%;
+    height: 60vh;
   }
 }
 </style>

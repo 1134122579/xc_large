@@ -53,7 +53,7 @@ export default {
             {
               id: "1-2",
               title: "视频制作",
-              to: "/content/Wwq",
+              to: "/content/tcVideo",
             },
             {
               id: "1-3",
@@ -72,9 +72,14 @@ export default {
           title: "企业文化",
           children: [
             {
-              id: "2-4",
+              id: "2-1",
               title: "企业活动",
               to: "/content/activity",
+            },
+            {
+              id: "2-2",
+              title: "最新资讯",
+              to: "/content/information",
             },
           ],
         },
@@ -152,6 +157,7 @@ export default {
     height: 60px;
     .logostyle {
       height: 100%;
+      cursor: pointer;
     }
   }
   .nav {

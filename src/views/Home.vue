@@ -80,7 +80,7 @@
                   </template>
                 </SwiperModel>
               </div>
-              <p class="ljxq">了解详情</p>
+              <p class="ljxq" @click="go('/navigation')">了解详情</p>
             </div>
           </div>
           <div class="dl_list">
@@ -260,9 +260,16 @@ export default {
   methods: {
     go(path) {
       console.log(path, "path");
+      const loading = this.$loading({
+        lock: true,
+        text: "进入中..",
+        spinner: "el-icon-loading",
+        background: "rgba(0, 0, 0, 0.7)",
+      });
       this.$router.push({
         path,
       });
+      loading.close();
     },
     // 获取当前时间
     getnewDate() {

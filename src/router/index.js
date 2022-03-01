@@ -38,6 +38,18 @@ const routes = [
         name: "Activity",
         component: () => import("@/views/activity.vue"),
       },
+      //  最新资讯
+      {
+        path: "information",
+        name: "Information",
+        component: () => import("@/views/Information.vue"),
+      },
+      //  天橙视频
+      {
+        path: "tcVideo",
+        name: "TcVideo",
+        component: () => import("@/views/tcVideo.vue"),
+      },
     ],
   },
   // 空间导览

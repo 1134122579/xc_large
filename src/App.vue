@@ -70,7 +70,7 @@ export default {
   border-radius: 2px;
 }
 &::-webkit-scrollbar-thumb {
-  background: #fdb732;
+  background: #333;
   border-radius: 10px;
 }
 &::-webkit-scrollbar-thumb:hover {

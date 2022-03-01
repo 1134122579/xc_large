@@ -25,7 +25,7 @@ module.exports = {
     },
     proxy: {
       [process.env.VUE_APP_BASE_API]: {
-        target: "http://design.skyoranges.com/api/v1/",
+        target: "http://show.skyoranges.com/api/v1/",
         changeOrigin: true,
         pathRewrite: {
           ["^" + process.env.VUE_APP_BASE_API]: "",

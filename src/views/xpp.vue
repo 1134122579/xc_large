@@ -2,14 +2,17 @@
   <div class="box">
     <SwiperModel :list="datalist" :setOption="setOption">
       <template slot="content" slot-scope="{ row }">
-        <div class="Navigation_con" :style="row.cover | filterBack">123</div>
+        <!-- :style="row.cover | filterBack" -->
+        <div class="Navigation_con flexcolumn">
+
+        </div>
       </template>
     </SwiperModel>
   </div>
 </template>
 <script>
 // import { getDesigner } from "@/api/swiperApi.js";
-import SwiperModel from "@/components/SwiperModel/index.vue";
+import SwiperModel from "@/components/SwiperHs/index.vue";
 export default {
   filters: {
     filterBack(data) {
@@ -84,39 +87,16 @@ export default {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  .swiperContent {
+
+  .Navigation_con {
+    padding: 0 20px;
     width: 100%;
     height: 100%;
-    .swiper-wrapper {
-      width: 100%;
-      height: 100%;
-      .swiper-slide {
-        width: 100%;
-        height: 100%;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 
-        .pagecontent {
-          width: 100%;
-          height: 100%;
-          background-size: cover;
-          background-repeat: no-repeat;
-          background-position: center;
-        }
-      }
-    }
-  }
-    .Navigation_con {
-          width: 100%;
-          height: 100%;
-          background-repeat: no-repeat;
-          background-position: center;
-          background-size: cover;
-        }
-  .swiper-button-prev,
-  .swiper-button-next {
-    background: rgba(0, 0, 0, 0.7);
-    padding: 20px;
-    border-radius: 5px;
-    color: #fff;
   }
 }
 </style>

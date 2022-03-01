@@ -9,11 +9,11 @@
  */
 import request from "@/utils/request";
 // 获取微文圈
-export function getWwq(data) {
+export function getWwq(params) {
   return request({
     url: "/getWwq",
-    method: "post",
-    data,
+    method: "get",
+    params,
   });
 }
 // 获取新闻动态
