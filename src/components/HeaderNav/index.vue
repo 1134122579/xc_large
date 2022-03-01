@@ -2,7 +2,7 @@
   <div class="HeaderNav">
     <!-- logo -->
     <div class="logo">
-      <img class="logostyle" :src="logo" />
+      <img class="logostyle" @click="gohome" :src="logo" />
     </div>
     <!-- nav -->
     <ul class="nav">
@@ -30,7 +30,7 @@
   </div>
 </template>
 <script>
-import logo from "@/assets/logo2.png";
+import logo from "@/assets/logo5.png";
 import yzxq_logo from "@/assets/icons/yzxqlogo.png";
 
 export default {
@@ -48,39 +48,57 @@ export default {
             {
               id: "1-1",
               title: "新品牌",
-              to: "/xpp",
+              to: "/content/xpp",
             },
             {
               id: "1-2",
               title: "视频制作",
-              to: "/Wwq",
+              to: "/content/Wwq",
             },
             {
               id: "1-3",
               title: "文化活动",
-              to: "/Wwq",
+              to: "/content/Wwq",
             },
             {
               id: "1-4",
               title: "空间设计",
-              to: "/Wwq",
+              to: "/content/Wwq",
             },
           ],
         },
         {
           id: "2",
           title: "企业文化",
-          children: [],
+          children: [
+            {
+              id: "2-4",
+              title: "企业活动",
+              to: "/content/activity",
+            },
+          ],
         },
         {
           id: "3",
           title: "空间站",
-          children: [],
+          children: [
+            {
+              id: "3-1",
+              title: "空间导览",
+              to: "/navigation",
+            },
+          ],
         },
         {
           id: "4",
           title: "微文圈",
-          children: [],
+          children: [
+            {
+              id: "4-1",
+              title: "微文圈",
+              to: "/content/Wwq",
+            },
+          ],
         },
         {
           id: "5",
@@ -89,12 +107,12 @@ export default {
             {
               id: "5-1",
               title: "我们做什么",
-              to: "/about",
+              to: "/content/about",
             },
             {
               id: "5-2",
               title: "联系我们",
-              to: "/Wwq",
+              to: "/content/Wwq",
             },
           ],
         },
@@ -102,12 +120,15 @@ export default {
     };
   },
   methods: {
+    gohome() {
+      this.$router.push({ path: "/" });
+    },
     go(item, childrenitem) {
       console.log(childrenitem);
       try {
+        this.curindex = item.id;
         if (childrenitem) {
           let { to } = childrenitem;
-          this.curindex = item.id;
           if (this.$route.path !== to) {
             this.$router.push({ path: to });
           }

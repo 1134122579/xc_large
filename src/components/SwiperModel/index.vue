@@ -6,9 +6,7 @@
         v-for="(item, index) in list"
         :key="index"
       >
-        <div class="SwiperModelcontentStyle" :style="item.cover | filterBack">
-          <!-- <img :src="item.cover" alt="" srcset="" /> -->
-        </div>
+        <slot name="content" class="SwiperModelcontentStyle" :row="item"></slot>
       </swiper-slide>
       <!-- 分页器 -->
       <div class="swiper-pagination" slot="pagination"></div>
@@ -91,7 +89,6 @@ export default {
     };
   },
   methods: {
-
     del() {
       this.item--;
     },

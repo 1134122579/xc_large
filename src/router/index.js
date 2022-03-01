@@ -32,7 +32,19 @@ const routes = [
         name: "About",
         component: () => import("@/views/About.vue"),
       },
+      // 企业活动
+      {
+        path: "activity",
+        name: "Activity",
+        component: () => import("@/views/activity.vue"),
+      },
     ],
+  },
+  // 空间导览
+  {
+    path: "/navigation",
+    name: "Navigation",
+    component: () => import("@/views/Navigation.vue"),
   },
   // {
   //   path: "/",

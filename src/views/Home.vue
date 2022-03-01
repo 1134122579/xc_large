@@ -32,7 +32,14 @@
               热点资讯
             </div>
             <div class="zx_swiper">
-              <SwiperModel :list="zx_list" :isbutton="false" />
+              <SwiperModel :list="zx_list" :isbutton="false">
+                <template slot="content" slot-scope="{ row }">
+                  <div
+                    class="swiper_content"
+                    :style="row.cover | filterBack"
+                  ></div>
+                </template>
+              </SwiperModel>
             </div>
           </div>
         </div>
@@ -44,8 +51,8 @@
               联系我们
             </div>
             <div class="about_content">
-              <p>电话：12345678910</p>
-              <p>电话：12345678910</p>
+              <p>电话：021-46088888</p>
+              <p>电话：021-46088888</p>
             </div>
           </div>
 
@@ -64,7 +71,14 @@
             </div>
             <div class="dl_container flexcolumn">
               <div class="dl_containerswiper">
-                <SwiperModel :list="dl_list" :isbutton="false" />
+                <SwiperModel :list="dl_list" :isbutton="false">
+                  <template slot="content" slot-scope="{ row }">
+                    <div
+                      class="swiper_content"
+                      :style="row.cover | filterBack"
+                    ></div>
+                  </template>
+                </SwiperModel>
               </div>
               <p class="ljxq">了解详情</p>
             </div>
@@ -87,7 +101,14 @@
         <div class="newactivity">
           <p class="title">最新活动</p>
           <div class="newactivity_block">
-            <SwiperModel :list="zx_list" :isbutton="false" />
+            <SwiperModel :list="zx_list" :isbutton="false">
+              <template slot="content" slot-scope="{ row }">
+                <div
+                  class="swiper_content"
+                  :style="row.cover | filterBack"
+                ></div>
+              </template>
+            </SwiperModel>
           </div>
         </div>
       </div>
@@ -149,6 +170,11 @@ import logo3 from "@/assets/logo3.png";
 import { parseTime } from "@/utils/index.js";
 import SwiperModel from "../components/SwiperModel/index.vue";
 export default {
+  filters: {
+    filterBack(data) {
+      return `background-image: url('${data}')`;
+    },
+  },
   components: {
     SwiperModel,
   },
@@ -353,7 +379,6 @@ export default {
             box-sizing: border-box;
             width: 100%;
             height: 250px;
-            background: #94a4c8;
             border-radius: 5px;
             overflow: hidden;
           }
@@ -677,6 +702,13 @@ export default {
         width: 30px;
         margin-right: 10px;
       }
+    }
+    .swiper_content {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: 50%;
+      background-repeat: no-repeat;
     }
   }
 }

@@ -30,6 +30,7 @@ export default {
   color: #233344;
   width: 100%;
   height: 100vh;
+  box-sizing: border-box;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
