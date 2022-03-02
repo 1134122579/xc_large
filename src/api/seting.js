@@ -6,20 +6,20 @@
  * @Description: In User Settings Edit
  * @FilePath: \navadmin\src\api\seting.js
  */
-import request from '@/utils/request'
+import request from "@/utils/request";
 // 添加用户
 export function addAdminUser(data) {
-    return request({
-        url: '/add_user',
-        method: 'post',
-        data
-    })
+  return request({
+    url: "/add_user",
+    method: "post",
+    data,
+  });
 }
 // 修改用户密码
 export function editUserPass(data) {
-    return request({
-        url: '/edit_user_pass',
-        method: 'post',
-        data
-    })
+  return request({
+    url: "/edit_user_pass",
+    method: "post",
+    data,
+  });
 }

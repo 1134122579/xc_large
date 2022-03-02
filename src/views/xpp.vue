@@ -3,9 +3,7 @@
     <SwiperModel :list="datalist" :setOption="setOption">
       <template slot="content" slot-scope="{ row }">
         <!-- :style="row.cover | filterBack" -->
-        <div class="Navigation_con flexcolumn">
-
-        </div>
+        <div class="Navigation_con flexcolumn"></div>
       </template>
     </SwiperModel>
   </div>
@@ -96,7 +94,6 @@ export default {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-
   }
 }
 </style>

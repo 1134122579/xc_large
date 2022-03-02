@@ -6,7 +6,7 @@ function resolve(dir) {
 }
 const name = "天空之橙大屏导览"; // page title
 
-const port = process.env.port || process.env.npm_config_port || 9527; // dev port
+const port = 9527; // dev port
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
@@ -17,8 +17,8 @@ module.exports = {
   lintOnSave: false,
   productionSourceMap: false,
   devServer: {
-    port: port,
-    open: true,
+    port: port, //端口号
+    open: false, //是否自动启动
     overlay: {
       warnings: false,
       errors: true,
@@ -33,7 +33,11 @@ module.exports = {
       },
     },
   },
-
+  pluginOptions: {
+    electronBuilder: {
+      nodeIntegration: true,
+    },
+  },
   configureWebpack: {
     name: name,
     resolve: {

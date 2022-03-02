@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import { parseTime } from "@/utils/index.js";
+// import { parseTime } from "@/utils/index.js";
 export default {
   name: "tcVideo",
 

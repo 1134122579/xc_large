@@ -1,5 +1,16 @@
 <template>
   <div id="app">
+    <div class="headerWin">
+      <div class="icon" @click="minimizeWin">
+        <img src="./assets/closeIcon/zuixiaohua.png" alt="" />
+      </div>
+      <div class="icon expand" @clilck="maximizeWin">
+        <img src="./assets/closeIcon/expand.png" alt="" />
+      </div>
+      <div class="icon" @click="closeWin">
+        <img src="./assets/closeIcon/guanbi4.png" alt="" />
+      </div>
+    </div>
     <!-- <div class="headerStyle">
       <HeaderNav />
     </div>
@@ -12,11 +23,29 @@
 </template>
 
 <script>
-import HeaderNav from "@/components/HeaderNav/index.vue";
-
+import { remote } from "electron";
 export default {
-  components: {
-    HeaderNav,
+  created() {
+    // console.log(electron);
+  },
+  methods: {
+    minimizeWin() {
+      remote.getCurrentWindow().minimize();
+      // ipcRenderer.send("window-min"); // 通知主进程我要进行窗口最小化操作
+    },
+    maximizeWin() {
+      const win = remote.getCurrentWindow();
+      console.log("maximizeWin", win);
+      if (win.isMaximized()) {
+        // 判断 窗口是否已最大化
+        win.restore(); // 恢复原窗口大小
+      } else {
+        win.maximize(); //最大化窗口
+      }
+    },
+    closeWin() {
+      remote.getCurrentWindow().close(); // 关闭窗口，也结束了所有进程
+    },
   },
 };
 </script>
@@ -35,6 +64,36 @@ export default {
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
+  .headerWin {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    min-height: 40px;
+    right: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    z-index: 12;
+    &:hover .icon {
+      display: block;
+    }
+    .icon {
+      display: none;
+      width: 40px;
+      margin-right: 18px;
+      cursor: pointer;
+      &:hover {
+        animation: swing;
+        animation-duration: 1.2s;
+      }
+      img {
+        width: 100%;
+      }
+    }
+    .expand {
+      width: 30px;
+    }
+  }
   .headerStyle {
     width: 100%;
     flex-shrink: 0;
