@@ -58,13 +58,13 @@ export default {
             {
               id: "1-3",
               title: "文化活动",
-              to: "/content/Wwq",
+              to: "/content/whhd",
             },
-            {
-              id: "1-4",
-              title: "空间设计",
-              to: "/content/Wwq",
-            },
+            // {
+            //   id: "1-4",
+            //   title: "空间设计",
+            //   to: "/content/Wwq",
+            // },
           ],
         },
         {

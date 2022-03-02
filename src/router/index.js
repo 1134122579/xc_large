@@ -56,6 +56,12 @@ const routes = [
         name: "Wzy",
         component: () => import("@/views/wzy.vue"),
       },
+      // 文化活动
+      {
+        path: "whhd",
+        name: "Whhd",
+        component: () => import("@/views/whhd.vue"),
+      },
     ],
   },
   // 空间导览

@@ -13,8 +13,8 @@ protocol.registerSchemesAsPrivileged([
 async function createWindow() {
   // Create the browser window.
   const win = new BrowserWindow({
-    width: 1280,
-    height: 1024,
+    width: 1600,
+    height: 900,
     frame: false, //是否用无边窗口，
     backgroundColor: "#2e2c29",
     // transparent设置为true是使用窗口的透明效果。
