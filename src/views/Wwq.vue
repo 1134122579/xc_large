@@ -28,7 +28,7 @@
     <el-dialog
       :title="lookobj.title"
       :visible.sync="centerDialogVisible"
-      width="30%"
+      width="40%"
       center
     >
       <!-- :src="lookobj.url" -->
@@ -37,10 +37,11 @@
           v-if="centerDialogVisible"
           marginwidth="0"
           marginheight="0"
-          scrolling="no"
-          src="http://tcos.chinavcr.com/all/main/anlie/index.html"
+          scrolling="yes"
           frameborder="0"
+          src="https://zhuanlan.zhihu.com/p/57852190"
         ></iframe>
+        <!-- :src="lookobj.url" -->
       </div>
     </el-dialog>
   </div>
@@ -105,7 +106,8 @@ export default {
   methods: {
     hanlLook(data) {
       this.lookobj = data;
-
+      window.open(data.url, data.title);
+      return;
       this.centerDialogVisible = true;
     },
     async getWwq() {
@@ -297,6 +299,11 @@ export default {
   .iframeContent {
     width: 100%;
     height: 60vh;
+    iframe {
+      width: 100%;
+      height: 100%;
+      background: aliceblue;
+    }
   }
 }
 </style>

@@ -50,6 +50,12 @@ const routes = [
         name: "TcVideo",
         component: () => import("@/views/tcVideo.vue"),
       },
+      // 文字云
+      {
+        path: "wzy",
+        name: "Wzy",
+        component: () => import("@/views/wzy.vue"),
+      },
     ],
   },
   // 空间导览

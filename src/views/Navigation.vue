@@ -79,12 +79,27 @@ export default {
   },
   methods: {
     gohome() {
+      const loading = this.$loading({
+        lock: true,
+        text: "加载中..",
+        spinner: "el-icon-loading",
+        background: "rgba(0, 0, 0, 0.7)",
+      });
       this.$router.push({ path: "/" });
+      loading.close();
     },
     goback() {
+      const loading = this.$loading({
+        lock: true,
+        text: "加载中..",
+        spinner: "el-icon-loading",
+        background: "rgba(0, 0, 0, 0.7)",
+      });
       this.$router.go(-1);
+      loading.close();
     },
   },
+  destroyed() {},
 };
 </script>
 <style lang="less" scoped>

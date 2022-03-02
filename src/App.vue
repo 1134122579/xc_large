@@ -4,7 +4,7 @@
       <div class="icon" @click="minimizeWin">
         <img src="./assets/closeIcon/zuixiaohua.png" alt="" />
       </div>
-      <div class="icon expand" @clilck="maximizeWin">
+      <div class="icon expand" @click="maximizeWin">
         <img src="./assets/closeIcon/expand.png" alt="" />
       </div>
       <div class="icon" @click="closeWin">
@@ -36,6 +36,7 @@ export default {
     maximizeWin() {
       const win = remote.getCurrentWindow();
       console.log("maximizeWin", win);
+
       if (win.isMaximized()) {
         // 判断 窗口是否已最大化
         win.restore(); // 恢复原窗口大小

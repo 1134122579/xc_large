@@ -314,6 +314,7 @@ export default {
     .left {
       position: relative;
       width: 410px;
+      flex-shrink: 0;
       .daystyle {
         position: absolute;
         top: 0;
@@ -504,7 +505,7 @@ export default {
       // 最新活动
       .newactivity {
         cursor: pointer;
-        height: 50%;
+        height: 51.8%;
         background: #fff;
         margin-top: 6%;
         // flex-shrink: 0;
@@ -537,6 +538,7 @@ export default {
     // 最右边
     .right {
       width: 460px;
+      flex-shrink: 0;
       cursor: pointer;
       .dktj {
         width: 100%;

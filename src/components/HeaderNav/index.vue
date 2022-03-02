@@ -72,9 +72,9 @@ export default {
           title: "企业文化",
           children: [
             {
-              id: "2-1",
-              title: "企业活动",
-              to: "/content/activity",
+              id: "5-1",
+              title: "企业文化",
+              to: "/content/wzy",
             },
             {
               id: "2-2",
@@ -117,7 +117,7 @@ export default {
             {
               id: "5-2",
               title: "联系我们",
-              to: "/content/Wwq",
+              to: "/content/wzy",
             },
           ],
         },
@@ -126,10 +126,23 @@ export default {
   },
   methods: {
     gohome() {
+      const loading = this.$loading({
+        lock: true,
+        text: "进入中..",
+        spinner: "el-icon-loading",
+        background: "rgba(0, 0, 0, 0.7)",
+      });
       this.$router.push({ path: "/" });
+      loading.close();
     },
     go(item, childrenitem) {
       console.log(childrenitem);
+      const loading = this.$loading({
+        lock: true,
+        text: "进入中..",
+        spinner: "el-icon-loading",
+        background: "rgba(0, 0, 0, 0.7)",
+      });
       try {
         this.curindex = item.id;
         if (childrenitem) {
@@ -139,6 +152,7 @@ export default {
           }
         }
       } catch (err) {}
+      loading.close();
     },
   },
 };

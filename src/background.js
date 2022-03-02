@@ -100,20 +100,70 @@ if (isDevelopment) {
 // win.restore()                          // 还原
 // win.isMinimized()                      // 是否最小化
 // 1. 窗口 最小化
-ipcMain.on("window-min", function () {
-  // 收到渲染进程的窗口最小化操作的通知，并调用窗口最小化函数，执行该操作
-  win.minimize();
-});
-// 2. 窗口 最大化、恢复
-ipcMain.on("window-max", function () {
-  if (win.isMaximized()) {
-    // 为true表示窗口已最大化
-    win.restore(); // 将窗口恢复为之前的状态.
-  } else {
-    win.maximize();
+// ipcMain.on("window-min", function () {
+//   // 收到渲染进程的窗口最小化操作的通知，并调用窗口最小化函数，执行该操作
+//   win.minimize();
+// });
+// // 2. 窗口 最大化、恢复
+// ipcMain.on("window-max", function () {
+//   if (win.isMaximized()) {
+//     // 为true表示窗口已最大化
+//     win.restore(); // 将窗口恢复为之前的状态.
+//   } else {
+//     win.maximize();
+//   }
+// });
+// // 3. 关闭窗口
+// ipcMain.on("window-close", function () {
+//   win.close();
+// });
+let win_list = []; //存储打开的窗口
+//主进程监听创建窗口事件
+ipcMain.on("createWindow", function (event, infor) {
+  const currentWindow = BrowserWindow.getFocusedWindow(); //获取当前活动的浏览器窗口。
+  if (currentWindow) {
+    //如果上一步中有活动窗口，则根据当前活动窗口的右下方设置下一个窗口的坐标
+    const [currentWindowX, currentWindowY] = currentWindow.getPosition();
+    x = currentWindowX + 20;
   }
-});
-// 3. 关闭窗口
-ipcMain.on("window-close", function () {
-  win.close();
+  let oldWin = null;
+  for (const item of win_list) {
+    //判断要创建的窗口是否已经打开，如果已经打开取出窗口
+    if (item.url == infor.url) {
+      oldWin = item.mwin;
+      break;
+    }
+  }
+
+  if (oldWin) {
+    //窗口存在直接打开
+    oldWin.show();
+  } else {
+    //否则创建新窗口
+    Menu.setApplicationMenu(null);
+    let newwin = new BrowserWindow({
+      x,
+      titleBarStyle: "hidden",
+      minWidth: 1024,
+      minHeight: 768,
+      // parent: win, //win是主窗口
+    });
+    // newwin.webContents.openDevTools();
+    if (infor.type == 1) {
+      newwin.loadURL(path.join("file:", __dirname, infor.url));
+    } else {
+      newwin.loadURL(infor.url);
+    }
+    newwin.on("closed", () => {
+      //窗口关闭。删除win_list存储的数据
+      for (let [index, item] of win_list.entries()) {
+        if (item.mwin == newwin) {
+          win_list.splice(index, 1);
+          newwin = null;
+          break;
+        }
+      }
+    });
+    win_list.push({ url: infor.url, mwin: newwin });
+  }
 });
