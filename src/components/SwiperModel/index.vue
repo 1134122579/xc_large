@@ -10,27 +10,17 @@
       </swiper-slide>
       <!-- 分页器 -->
       <div class="swiper-pagination" slot="pagination"></div>
-      <div v-show="isbutton">
-        <div class="swiper-button-prev" slot="button-prev"></div>
-        <div class="swiper-button-next" slot="button-next"></div>
-      </div>
+      <div
+        v-show="isbutton"
+        class="swiper-button-prev"
+        slot="button-prev"
+      ></div>
+      <div
+        v-show="isbutton"
+        class="swiper-button-next"
+        slot="button-next"
+      ></div>
     </swiper>
-    <!-- <swiper
-          :options="swiperOption1"
-          v-if="index == 4"
-          style="background: green"
-          class="swiper-container-child"
-        >
-          <swiper-slide class="swiper-slide" v-for="j in 4" :key="j">
-            {{ j }}
-          </swiper-slide>
-          <div class="swiper-pagination" slot="pagination"></div>
-        </swiper> -->
-    <!-- 左右箭头 -->
-    <!-- <div class="swiper-button-prev" slot="button-prev"></div>
-      <div class="swiper-button-next" slot="button-next"></div>  -->
-    <!-- <button @click="del">-1</button>
-    <button @click="sum">+1</button> -->
   </div>
 </template>
 
@@ -65,13 +55,15 @@ export default {
     return {
       swiperOption: {
         loop: true,
-        autoplay: {
-          //swiper手动滑动之后自动轮播失效的解决方法,包括触碰，拖动，点击pagination,重新启动自动播放
-          //   disableOnInteraction: false,
-          disableOnInteraction: false,
-          // 自动播放时间：毫秒
-          delay: 6000,
-        },
+        speed: 1000, //默认就是300毫秒
+        // autoplay: {
+        //   //swiper手动滑动之后自动轮播失效的解决方法,包括触碰，拖动，点击pagination,重新启动自动播放
+        //   //   disableOnInteraction: false,
+        //   disableOnInteraction: false,
+        //   // 自动播放时间：毫秒
+        //   delay: 6000,
+        // },
+        autoplay: false,
         navigation: {
           prevEl: ".swiper-button-prev",
           nextEl: ".swiper-button-next",
@@ -107,8 +99,13 @@ export default {
   .swiper-container-par {
     width: 100%;
     height: 100%;
-
     box-sizing: border-box;
+    .swiper-button-prev,
+    .swiper-button-next {
+      outline: none;
+      top: calc(50%);
+      color: #333;
+    }
     .swiper-slide {
       width: 100%;
       height: 100%;
@@ -133,11 +130,7 @@ export default {
     width: 100%;
     height: 100%;
     position: relative;
-    .swiper-button-prev,
-    .swiper-button-next {
-      outline: none;
-      top: calc(50%);
-    }
+
     img {
       width: 100%;
       height: 100%;

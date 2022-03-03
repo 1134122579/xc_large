@@ -85,6 +85,9 @@
               </div>
             </div>
           </div>
+          <div class="scroll-wrap scroll-wrap3" v-if="item.type == 3">
+            <CSwiperModel :list="item.children" />
+          </div>
           <!-- <slot
             name="content"
             class="SwiperModelcontentStyle"
@@ -103,9 +106,12 @@
 
 <script>
 // import { parseTime } from "@/utils/index.js";
+import CSwiperModel from "@/components/CSwiperModel/index.vue";
 export default {
   name: "whhd",
-
+  components: {
+    CSwiperModel,
+  },
   filters: {
     filterBack(data) {
       return `background-image: url('${data}')`;
@@ -202,7 +208,50 @@ export default {
         {
           type: 3,
           title: "产品介绍",
-          children: [],
+          children: [
+            {
+              title: "天空一号红色IPA",
+              link: "https://mp.weixin.qq.com/s/WGbFPzITSrD9P7DPjHY6wA",
+              cover: require("../assets/groupimg/20220222145017.jpg"),
+              desc: "7月28日，全市青年企业家座谈会召开，深入学习贯彻习近平总书记“七一”重要讲话精神。",
+            },
+            {
+              title: "天空一号红色IPA",
+              link: "https://mp.weixin.qq.com/s/WGbFPzITSrD9P7DPjHY6wA",
+              cover: require("../assets/groupimg/20220222145017.jpg"),
+              desc: "7月28日，全市青年企业家座谈会召开，深入学习贯彻习近平总书记“七一”重要讲话精神。",
+            },
+            {
+              title: "天空一号红色IPA",
+              link: "https://mp.weixin.qq.com/s/WGbFPzITSrD9P7DPjHY6wA",
+              cover: require("../assets/groupimg/20220222145017.jpg"),
+              desc: "7月28日，全市青年企业家座谈会召开，深入学习贯彻习近平总书记“七一”重要讲话精神。",
+            },
+            {
+              title: "天空一号红色IPA",
+              link: "https://mp.weixin.qq.com/s/WGbFPzITSrD9P7DPjHY6wA",
+              cover: require("../assets/groupimg/20220222145017.jpg"),
+              desc: "7月28日，全市青年企业家座谈会召开，深入学习贯彻习近平总书记“七一”重要讲话精神。",
+            },
+            {
+              title: "天空之橙受邀参加「淄博市青年企业家座谈会」并作为代表发言",
+              link: "https://mp.weixin.qq.com/s/WGbFPzITSrD9P7DPjHY6wA",
+              cover: require("../assets/groupimg/20220222145017.jpg"),
+              desc: "7月28日，全市青年企业家座谈会召开，深入学习贯彻习近平总书记“七一”重要讲话精神。",
+            },
+            {
+              title: "天空之橙受邀参加「淄博市青年企业家座谈会」并作为代表发言",
+              link: "https://mp.weixin.qq.com/s/WGbFPzITSrD9P7DPjHY6wA",
+              cover: require("../assets/groupimg/20220222145017.jpg"),
+              desc: "7月28日，全市青年企业家座谈会召开，深入学习贯彻习近平总书记“七一”重要讲话精神。",
+            },
+            {
+              title: "天空之橙受邀参加「淄博市青年企业家座谈会」并作为代表发言",
+              link: "https://mp.weixin.qq.com/s/WGbFPzITSrD9P7DPjHY6wA",
+              cover: require("../assets/groupimg/20220222145017.jpg"),
+              desc: "7月28日，全市青年企业家座谈会召开，深入学习贯彻习近平总书记“七一”重要讲话精神。",
+            },
+          ],
         },
         {
           type: 4,
@@ -371,6 +420,7 @@ export default {
         direction: "vertical",
         freeMode: true,
         grabCursor: true,
+        centeredSlides: true,
         noSwipingClass: "scroll-wrap",
         grid: {
           fill: "row",
@@ -383,18 +433,20 @@ export default {
         grabCursor: true,
         slidesPerView: "auto",
         freeMode: true,
+        centeredSlides: true,
         speed: 1000, //默认就是300毫秒
         // centeredSlides: true,
         // slidesPerview: 1,
         // loopAdditionalSlides: 1,
         // loopedSlides: 1,
-        autoplay: {
-          //swiper手动滑动之后自动轮播失效的解决方法,包括触碰，拖动，点击pagination,重新启动自动播放
-          //   disableOnInteraction: false,
-          disableOnInteraction: false,
-          // 自动播放时间：毫秒
-          delay: 6000,
-        },
+        autoplay: false,
+        // autoplay: {
+        //   //swiper手动滑动之后自动轮播失效的解决方法,包括触碰，拖动，点击pagination,重新启动自动播放
+        //   //   disableOnInteraction: false,
+        //   disableOnInteraction: false,
+        //   // 自动播放时间：毫秒
+        //   delay: 6000,
+        // },
         navigation: {
           prevEl: ".swiper-button-prev",
           nextEl: ".swiper-button-next",
@@ -741,6 +793,15 @@ export default {
         }
       }
     }
+  }
+  .scroll-wrap3 {
+    width: 76vw;
+    height: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 30px;
+    padding-left: 10vw;
+    overflow: hidden;
   }
 }
 </style>

@@ -81,6 +81,11 @@ export default {
               title: "最新资讯",
               to: "/content/information",
             },
+            {
+              id: "2-3",
+              title: "打卡图集",
+              to: "/content/dktj",
+            },
           ],
         },
         {
@@ -168,7 +173,7 @@ export default {
   padding-top: 40px;
   width: 100%;
   .logo {
-    height: 60px;
+    height: 54px;
     .logostyle {
       height: 100%;
       cursor: pointer;

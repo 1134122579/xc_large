@@ -62,6 +62,12 @@ const routes = [
         name: "Whhd",
         component: () => import("@/views/whhd.vue"),
       },
+      //打卡图集
+      {
+        path: "dktj",
+        name: "Dktj",
+        component: () => import("@/views/dktj.vue"),
+      },
     ],
   },
   // 空间导览
