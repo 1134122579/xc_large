@@ -85,8 +85,15 @@
               </div>
             </div>
           </div>
+          <!-- 产品介绍 -->
           <div class="scroll-wrap scroll-wrap3" v-if="item.type == 3">
             <CSwiperModel :list="item.children" />
+          </div>
+          <!-- 优惠活动 -->
+          <!-- 视频案例 -->
+          <!-- 在线商城 -->
+          <div class="scroll-wrap scroll-wrap3" v-if="item.type == 6">
+            <ShopSwiper :list="item.children" />
           </div>
           <!-- <slot
             name="content"
@@ -107,10 +114,13 @@
 <script>
 // import { parseTime } from "@/utils/index.js";
 import CSwiperModel from "@/components/CSwiperModel/index.vue";
+import ShopSwiper from "@/components/ShopSwiper/index.vue";
+
 export default {
   name: "whhd",
   components: {
     CSwiperModel,
+    ShopSwiper,
   },
   filters: {
     filterBack(data) {
@@ -266,7 +276,20 @@ export default {
         {
           type: 6,
           title: "在线商城",
-          children: [],
+          children: [
+            {
+              title: "天空之橙受邀参加「淄博市青年企业家座谈会」并作为代表发言",
+              link: "https://mp.weixin.qq.com/s/WGbFPzITSrD9P7DPjHY6wA",
+              cover: require("../assets/groupimg/20220222145017.jpg"),
+              desc: "7月28日，全市青年企业家座谈会召开，深入学习贯彻习近平总书记“七一”重要讲话精神。",
+            },
+            {
+              title: "天空之橙受邀参加「淄博市青年企业家座谈会」并作为代表发言",
+              link: "https://mp.weixin.qq.com/s/WGbFPzITSrD9P7DPjHY6wA",
+              cover: require("../assets/groupimg/20220222145017.jpg"),
+              desc: "7月28日，全市青年企业家座谈会召开，深入学习贯彻习近平总书记“七一”重要讲话精神。",
+            },
+          ],
         },
       ],
       videolist: [
@@ -421,7 +444,8 @@ export default {
         freeMode: true,
         grabCursor: true,
         centeredSlides: true,
-        noSwipingClass: "scroll-wrap",
+        // noSwipingClass: "scroll-wrap",
+        noSwipingClass: "swiper-slide",
         grid: {
           fill: "row",
           rows: 3,

@@ -72,7 +72,7 @@ export default {
           title: "企业文化",
           children: [
             {
-              id: "5-1",
+              id: "2-1",
               title: "企业文化",
               to: "/content/wzy",
             },
@@ -85,6 +85,11 @@ export default {
               id: "2-3",
               title: "打卡图集",
               to: "/content/dktj",
+            },
+            {
+              id: "2-4",
+              title: "企业活动",
+              to: "/content/activity",
             },
           ],
         },
