@@ -57,6 +57,7 @@ export default {
     return {
       swiperOption: {
         loop: false,
+        observer: true,
         autoplay: false,
         speed: 800, //默认就是300毫秒
         slidesPerView: 3,

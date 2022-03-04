@@ -121,6 +121,7 @@ export default {
       swiperOption: {
         loop: false,
         grabCursor: true,
+        observer: true,
         speed: 1000, //默认就是300毫秒
         // centeredSlides: true,
         // slidesPerview: 1,

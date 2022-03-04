@@ -497,6 +497,7 @@ export default {
               p {
                 font-size: 14px;
                 margin-top: 10px;
+                font-weight: 600;
               }
             }
           }

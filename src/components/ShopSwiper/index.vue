@@ -108,6 +108,7 @@ export default {
         loop: false,
         grabCursor: true,
         spaceBetween: 20,
+        observer: true,
         slidesPerView: 4,
         speed: 1000, //默认就是300毫秒
         centeredSlides: true,

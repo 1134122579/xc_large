@@ -59,6 +59,7 @@ export default {
       classList: [],
       swiperOption: {
         loop: false,
+        observer: true,
         lazy: true,
         autoplay: {
           //swiper手动滑动之后自动轮播失效的解决方法,包括触碰，拖动，点击pagination,重新启动自动播放
