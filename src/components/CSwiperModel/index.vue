@@ -255,7 +255,7 @@ export default {
   .typeswiper {
     // position: absolute;
     width: 100%;
-    height: 20%;
+    height: 24%;
     .swiper-container-child {
       height: 100%;
       // 介绍

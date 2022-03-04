@@ -21,7 +21,7 @@
       </swiper>
     </div>
     <!-- 下边 -->
-    <div class="typeswiper">
+    <div class="typeswiperbottom">
       <swiper
         ref="swiperleft"
         :options="swiperOption1"
@@ -80,13 +80,6 @@ export default {
     setOption: {
       type: Object,
       default: {},
-      // default: function (value) {
-      //   console.log("propE default invoked.", value);
-      //   return { message: "I am from propE.", value };
-      // },
-      // validator(value) {
-      //   console.log(value, "setOption");
-      // },
     },
   },
   filters: {
@@ -252,10 +245,10 @@ export default {
     }
   }
 
-  .typeswiper {
+  .typeswiperbottom {
     // position: absolute;
     width: 100%;
-    height: 20%;
+    height: 24%;
     .swiper-container-child {
       height: 100%;
       // 介绍

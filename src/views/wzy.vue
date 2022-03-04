@@ -25,33 +25,63 @@ export default {
     return {
       config: {
         radius: 400, //	滚动半径，Number，单位px
-        maxFont: 50, //	最大字体大小
+        maxFont: 58, //	最大字体大小
         color: null, //	字体颜色。为null时随机
         rotateAngleXbase: 1000, //	600	X方向旋转速度基数，数越小速度越快
         rotateAngleYbase: 1000, //	600	Y方向旋转速度基数，数越小速度越快
         hover: false, //是否开启悬浮联动
       },
       hotTag: [
-        { id: "05023f8da31c4b4187cc6899e2a3aec2", name: "燃烧吧大脑" },
-        { id: "0ef028e5278f4f5ca31f99f1bd22b1cc", name: "剑河县" },
-        { id: "1a32ef04d3c548eaa6777abb46da32f2", name: "台江县" },
-        { id: "2c26488325bd493687d16315fe0e5fdd", name: "岑巩县" },
-        { id: "3a786111828a4b9f89ae9da25753eedd", name: "黎平" },
+        {
+          id: "05023f8da31c4b4187cc6899e2a3aec2",
+          name: "话更少，做更多，但更好",
+        },
+        { id: "0ef028e5278f4f5ca31f99f1bd22b1cc", name: "燃烧吧大脑" },
+        {
+          id: "1a32ef04d3c548eaa6777abb46da32f2",
+          name: "话更少，做更多，但更好",
+        },
+        {
+          id: "2c26488325bd493687d16315fe0e5fdd",
+          name: "不做语言的巨人，行动的矮子",
+        },
+        { id: "3a786111828a4b9f89ae9da25753eedd", name: "人要脸树要皮" },
         { id: "4ed593eed91b4244969995237f5c96c5", name: "BURN" },
-        { id: "615d2c178f1a47cb8d473823e74f5386", name: "凯里市" },
+        {
+          id: "615d2c178f1a47cb8d473823e74f5386",
+          name: "当认为不行的时候，才是工作的开始",
+        },
         { id: "76f652df03db43349272a9aff492b065", name: "BURN" },
-        { id: "8ff29d0d35e548feb945063b34ed9c9b", name: "黄平县" },
-        { id: "a8ac2170008746fdadc05ea461bc5e37", name: "雷山县" },
-        { id: "05023f8da31c4b4187cc6899e2a3aec2", name: "镇远县" },
-        { id: "0ef028e5278f4f5ca31f99f1bd22b1cc", name: "剑河县" },
-        { id: "1a32ef04d3c548eaa6777abb46da32f2", name: "台江县" },
-        { id: "2c26488325bd493687d16315fe0e5fdd", name: "岑巩县" },
-        { id: "3a786111828a4b9f89ae9da25753eedd", name: "黎平" },
-        { id: "4ed593eed91b4244969995237f5c96c5", name: "丹寨县" },
-        { id: "615d2c178f1a47cb8d473823e74f5386", name: "凯里市" },
+        {
+          id: "8ff29d0d35e548feb945063b34ed9c9b",
+          name: "乐观构想，悲观计划，愉快执行",
+        },
+        { id: "a8ac2170008746fdadc05ea461bc5e37", name: "NO 不坐差不多先生" },
+        {
+          id: "05023f8da31c4b4187cc6899e2a3aec2",
+          name: "牛逼的人生都是连滚带爬",
+        },
+        { id: "0ef028e5278f4f5ca31f99f1bd22b1cc", name: "OPEN" },
+        {
+          id: "1a32ef04d3c548eaa6777abb46da32f2",
+          name: "话更少，做更多，但更好",
+        },
+        {
+          id: "2c26488325bd493687d16315fe0e5fdd",
+          name: "打工者的心态正在悄悄毁掉你",
+        },
+        {
+          id: "3a786111828a4b9f89ae9da25753eedd",
+          name: "不要以现在的能力，约束未来的想象",
+        },
+        { id: "4ed593eed91b4244969995237f5c96c5", name: "燃烧吧大脑" },
+        {
+          id: "615d2c178f1a47cb8d473823e74f5386",
+          name: "话更少，做更多，但更好",
+        },
         { id: "76f652df03db43349272a9aff492b065", name: "BURN" },
-        { id: "8ff29d0d35e548feb945063b34ed9c9b", name: "黄平县" },
-        { id: "a8ac2170008746fdadc05ea461bc5e37", name: "雷山县" },
+        { id: "8ff29d0d35e548feb945063b34ed9c9b", name: "燃烧吧大脑" },
+        { id: "a8ac2170008746fdadc05ea461bc5e37", name: "燃烧吧大脑" },
       ],
       tagEle: "",
       paper: "",

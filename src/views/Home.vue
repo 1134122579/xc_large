@@ -100,7 +100,7 @@
         <!-- 最新活动 -->
         <div class="newactivity">
           <p class="title">最新活动</p>
-          <div class="newactivity_block">
+          <div class="newactivity_block" @click="go('/content/information')">
             <SwiperModel :list="zx_list" :isbutton="false">
               <template slot="content" slot-scope="{ row }">
                 <div
@@ -118,7 +118,7 @@
           <p>打卡图集</p>
           <div class="imgList flexcolumn">
             <span class="dkdian"></span>
-            <div class="dktj flexcolumn imgani">
+            <div class="dktj flexcolumn imgani" @click="go('/content/dktj')">
               <img src="../assets/bgimage/djtj_icon.png" alt="" />
             </div>
             <div class="dktj_logo">
@@ -128,7 +128,7 @@
         </div>
         <!-- 天空之橙 -->
         <div class="typestyle flexcontent">
-          <div class="logo3 flexcolumn">
+          <div class="logo3 flexcolumn" @click="go('/content/wzy')">
             <img src="../assets/bgimage/logo3.png" alt="" />
           </div>
           <div class="typeblkkock flexcolumn type1" @click="go('/content/xpp')">
@@ -139,21 +139,21 @@
             <div class="jiao position1"></div>
           </div>
           <div class="typeblkkock flexcolumn type2">
-            <div class="zx_title">
+            <div class="zx_title" @click="go('/content/tcVideo')">
               <img class="icon" src="../assets/bgimage/spzz.png" alt="" />
               视频制作
             </div>
             <div class="jiao position2"></div>
           </div>
           <div class="typeblkkock flexcolumn type3">
-            <div class="zx_title">
+            <div class="zx_title" @click="go('/content/tcVideo')">
               <img class="icon" src="../assets/bgimage/kjsj.png" alt="" />
               空间设计及运营
             </div>
             <div class="jiao position3"></div>
           </div>
           <div class="typeblkkock flexcolumn type4">
-            <div class="zx_title">
+            <div class="zx_title" @click="go('/content/whhd')">
               <img class="icon" src="../assets/bgimage/whhd.png" alt="" />
               文化活动
             </div>
@@ -461,9 +461,9 @@ export default {
               background: #94a4c8;
               color: #fff;
               margin-top: 10px;
-              padding: 2px 10px;
+              padding: 4px 10px;
               cursor: pointer;
-              border-radius: 5px;
+              border-radius: 4px;
               &:hover {
                 animation: heartBeat;
                 animation-duration: 1.5s;

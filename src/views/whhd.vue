@@ -48,7 +48,7 @@
               <p>{{ P_item.desc }}</p>
               <p>{{ P_item.desc }}</p>
 
-              <div class="lookbutton"><p>了解详情</p></div>
+              <!-- <div class="lookbutton"><p>了解详情</p></div> -->
               <div class="images">
                 <div class="imsgeStyle">
                   <img :src="P_item.cover" alt="" srcset="" />
@@ -199,7 +199,7 @@ export default {
         },
         {
           type: 2,
-          title: "品牌视频",
+          title: "品牌新闻",
           children: [
             {
               title: "天空之橙受邀参加「淄博市青年企业家座谈会」并作为代表发言",
@@ -222,57 +222,69 @@ export default {
             {
               title: "天空一号红色IPA",
               link: "https://mp.weixin.qq.com/s/WGbFPzITSrD9P7DPjHY6wA",
-              cover: require("../assets/groupimg/20220222145017.jpg"),
+              cover: require("@/assets/beerimg/beer1.jpg"),
               desc: "7月28日，全市青年企业家座谈会召开，深入学习贯彻习近平总书记“七一”重要讲话精神。",
             },
             {
-              title: "天空一号红色IPA",
+              title: "天空二号红色IPA",
               link: "https://mp.weixin.qq.com/s/WGbFPzITSrD9P7DPjHY6wA",
-              cover: require("../assets/groupimg/20220222145017.jpg"),
+              cover: require("@/assets/beerimg/beer2.jpg"),
               desc: "7月28日，全市青年企业家座谈会召开，深入学习贯彻习近平总书记“七一”重要讲话精神。",
             },
             {
-              title: "天空一号红色IPA",
+              title: "天空三号红色IPA",
               link: "https://mp.weixin.qq.com/s/WGbFPzITSrD9P7DPjHY6wA",
-              cover: require("../assets/groupimg/20220222145017.jpg"),
+              cover: require("@/assets/beerimg/beer3.jpg"),
               desc: "7月28日，全市青年企业家座谈会召开，深入学习贯彻习近平总书记“七一”重要讲话精神。",
             },
             {
-              title: "天空一号红色IPA",
+              title: "天空四号红色IPA",
               link: "https://mp.weixin.qq.com/s/WGbFPzITSrD9P7DPjHY6wA",
-              cover: require("../assets/groupimg/20220222145017.jpg"),
+              cover: require("@/assets/beerimg/beer4.jpg"),
               desc: "7月28日，全市青年企业家座谈会召开，深入学习贯彻习近平总书记“七一”重要讲话精神。",
             },
             {
-              title: "天空之橙受邀参加「淄博市青年企业家座谈会」并作为代表发言",
+              title: "天空五号红色IPA",
               link: "https://mp.weixin.qq.com/s/WGbFPzITSrD9P7DPjHY6wA",
-              cover: require("../assets/groupimg/20220222145017.jpg"),
+              cover: require("@/assets/beerimg/beer5.jpg"),
               desc: "7月28日，全市青年企业家座谈会召开，深入学习贯彻习近平总书记“七一”重要讲话精神。",
             },
             {
-              title: "天空之橙受邀参加「淄博市青年企业家座谈会」并作为代表发言",
+              title: "天空六号红色IPA",
               link: "https://mp.weixin.qq.com/s/WGbFPzITSrD9P7DPjHY6wA",
-              cover: require("../assets/groupimg/20220222145017.jpg"),
+              cover: require("@/assets/beerimg/beer6.jpg"),
               desc: "7月28日，全市青年企业家座谈会召开，深入学习贯彻习近平总书记“七一”重要讲话精神。",
             },
             {
-              title: "天空之橙受邀参加「淄博市青年企业家座谈会」并作为代表发言",
+              title: "天空七号红色IPA",
               link: "https://mp.weixin.qq.com/s/WGbFPzITSrD9P7DPjHY6wA",
-              cover: require("../assets/groupimg/20220222145017.jpg"),
+              cover: require("@/assets/beerimg/beer7.jpg"),
+              desc: "7月28日，全市青年企业家座谈会召开，深入学习贯彻习近平总书记“七一”重要讲话精神。",
+            },
+            {
+              title: "天空八号红色IPA",
+              link: "https://mp.weixin.qq.com/s/WGbFPzITSrD9P7DPjHY6wA",
+              cover: require("@/assets/beerimg/beer8.jpg"),
+              desc: "7月28日，全市青年企业家座谈会召开，深入学习贯彻习近平总书记“七一”重要讲话精神。",
+            },
+            {
+              title: "天空九号红色IPA",
+              link: "https://mp.weixin.qq.com/s/WGbFPzITSrD9P7DPjHY6wA",
+              cover: require("@/assets/beerimg/beer9.jpg"),
               desc: "7月28日，全市青年企业家座谈会召开，深入学习贯彻习近平总书记“七一”重要讲话精神。",
             },
           ],
         },
-        {
-          type: 4,
-          title: "视频案例",
-          children: [],
-        },
-        {
-          type: 5,
-          title: "优惠活动",
-          children: [],
-        },
+        // {
+        //   type: 4,
+        //   title: "视频案例",
+        //   children: [],
+        // },
+        // {
+        //   type: 5,
+        //   title: "优惠活动",
+        //   children: [],
+        // },
         {
           type: 6,
           title: "在线商城",
@@ -680,10 +692,10 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        min-height: 180px;
+        min-height: 280px;
         .imsgeStyle {
           flex: 1;
-          height: 120px;
+          // height: 120px;
           overflow: hidden;
           border-radius: 5px;
           padding: 0 8px;

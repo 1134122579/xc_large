@@ -12,7 +12,7 @@
             <img :src="item.cover" alt="" />
           </div>
           <h2>SKYBEER</h2>
-          <p>按时考虑到卡洛斯那么多看了看撒没打开没看没看没看联名卡l</p>
+          <p>{{ item.desc }}</p>
           <div>
             <i class="el-icon-box"></i>
           </div>
@@ -138,10 +138,10 @@ export default {
           }
         }
         p {
-          width: 40%;
+          width: 60%;
           line-height: 2;
           font-size: 16px;
-          height: 30%;
+          min-height: 30%;
         }
         h2 {
           margin: 20px;
