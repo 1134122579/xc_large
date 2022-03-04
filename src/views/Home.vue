@@ -8,7 +8,18 @@
         <!-- 时间 -->
         <div class="daystyle flexcolumn">
           <div class="daystyle_t flexcontent">
-            <i class="el-icon-light-rain"></i>{{ weather }}
+            <i
+              class="el-icon-light-rain"
+              v-show="dayweather.type == '小雨'"
+            ></i>
+            <i class="el-icon-heavy-rain" v-show="dayweather.type == '大雨'"></i
+            ><i class="el-icon-sunny" v-show="dayweather.type == '晴'"></i
+            ><i
+              class="el-icon-cloudy-and-sunny"
+              v-show="dayweather.type == '多云'"
+            ></i
+            ><i class="el-icon-cloudy" v-show="dayweather.type == '阴'"></i>
+            {{ dayweather.lowD }}-{{ dayweather.highD }}
           </div>
           <div class="daystyle_time flexcontent">
             <div class="hoser">{{ hours }}</div>
@@ -181,6 +192,7 @@ export default {
   data() {
     return {
       logo3,
+      dayweather: {},
       weather: "15~24°",
       years: "",
       hours: "",
@@ -253,6 +265,10 @@ export default {
   },
   created() {
     this.getnewDate();
+    this.getweather();
+    setInterval(() => {
+      this.getweather();
+    }, 360000);
     setInterval(() => {
       this.getnewDate();
     }, 60000);
@@ -270,6 +286,27 @@ export default {
         path,
       });
       loading.close();
+    },
+    // 获取天气
+    getweather() {
+      var requestOptions = {
+        method: "GET",
+        redirect: "follow",
+      };
+      fetch("http://wthrcdn.etouch.cn/weather_mini?city=上海", requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+          result = JSON.parse(result).data;
+          console.log(result);
+          // 今天天气
+          let { forecast } = result;
+          let dayweather = forecast[0];
+          dayweather["lowD"] = forecast[0].low.split(" ")[1];
+          dayweather["highD"] = forecast[0].high.split(" ")[1];
+          console.log(dayweather);
+          this.dayweather = dayweather;
+        })
+        .catch((error) => console.log("error", error));
     },
     // 获取当前时间
     getnewDate() {
@@ -338,6 +375,9 @@ export default {
         .daystyle_t {
           font-size: 16px;
           letter-spacing: 0;
+          .el-icon-light-rain {
+            padding-right: 6px;
+          }
         }
         .daystyle_time {
           padding: 5px 0;

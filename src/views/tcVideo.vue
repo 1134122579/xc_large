@@ -2,57 +2,74 @@
   <div class="tcVideo">
     <!-- 左边 -->
     <div class="typeswiper">
-      <div class="xian">
-        <p></p>
-      </div>
-      <swiper
-        ref="swiperleft"
-        :options="swiperOption1"
-        class="swiper-container-child"
-      >
-        <swiper-slide
-          class="swiper-slide"
+      <ul>
+        <li
           v-for="(item, index) in list"
           :key="index"
+          :class="item.id == listQuery.tags_id && 'iative'"
+          @click="getlist(index, item)"
         >
-          {{ item.title }}
-        </swiper-slide>
-      </swiper>
-      <div class="xian">
-        <p></p>
-      </div>
+          <p>{{ item.tags_name }}</p>
+        </li>
+      </ul>
+      <p class="xian"></p>
     </div>
     <!-- 右边 -->
     <div class="swiperContent">
-      <swiper
-        :options="swipervideoOption"
-        ref="swipervideoOption"
-        class="swiper-container-par"
-      >
-        <swiper-slide
-          class="swiper-slide"
+      <div class="searchStyle">
+        <el-input
+          placeholder="请输入搜索内容"
+          suffix-icon="el-icon-search"
+          v-model="listQuery.name"
+          round
+          @input="onsearch"
+          clearable
+          style="width: 30%"
+        />
+      </div>
+      <ul>
+        <li
           v-for="(item, index) in videolist"
           :key="index"
+          @click="lookvideo(index, item)"
         >
-          {{ item.title }}
-          <!-- <slot
-            name="content"
-            class="SwiperModelcontentStyle"
-            :row="item"
-          ></slot> -->
-          <!-- 视频列表 -->
-        </swiper-slide>
-        <!-- 分页器 -->
-        <!-- <div class="swiper-pagination" slot="pagination"></div> -->
-        <!-- <div class="swiper-button-prev" slot="button-prev"></div> -->
-        <!-- <div class="swiper-button-next" slot="button-next"></div> -->
-      </swiper>
+          <div class="videocover">
+            <img :src="item.cover" alt="" srcset="" />
+          </div>
+          <h4>{{ item.name }}</h4>
+          <div class="videodesc">
+            <p>{{ item.playtime }}</p>
+            <p>
+              <i class="el-icon-view"></i>
+              {{ item.looknum }}
+            </p>
+          </div>
+        </li>
+      </ul>
     </div>
+    <!-- 视频弹窗 -->
+    <el-dialog
+      :title="videoobj.name"
+      :visible.sync="dialogVisible"
+      width="50%"
+      @close="onclose"
+      :close-on-click-modal="false"
+    >
+      <vue-core-video-player
+        class="vuecorevideoplayer"
+        v-if="dialogVisible"
+        :title="videoobj.name"
+        :loop="false"
+        :controls="controls"
+        :src="videoobj.video_url"
+      ></vue-core-video-player>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 // import { parseTime } from "@/utils/index.js";
+import { getVideoTags, getVideo } from "@/api/index.js";
 export default {
   name: "tcVideo",
 
@@ -64,10 +81,14 @@ export default {
   watch: {},
   data() {
     return {
+      listQuery: {
+        tags_id: "",
+        name: "",
+      },
       list: [
         {
           type: 1,
-          title: "天橙视频",
+          title: "全部视频",
           children: [],
         },
         {
@@ -77,171 +98,36 @@ export default {
         },
         {
           type: 1,
-          title: "天橙视频",
+          title: "精选案例",
           children: [],
         },
         {
           type: 1,
-          title: "天橙视频",
+          title: "宣传片",
           children: [],
         },
         {
           type: 1,
-          title: "天橙视频",
+          title: "广告片",
           children: [],
         },
         {
           type: 1,
-          title: "天橙视频",
+          title: "微电影",
+          children: [],
+        },
+        {
+          type: 1,
+          title: "MG动画",
+          children: [],
+        },
+        {
+          type: 1,
+          title: "三维动画",
           children: [],
         },
       ],
-      videolist: [
-        {
-          title: "天空之橙受邀参加「淄博市青年企业家座谈会」并作为代表发言",
-          link: "https://mp.weixin.qq.com/s/WGbFPzITSrD9P7DPjHY6wA",
-          cover: require("../assets/groupimg/20220222145017.jpg"),
-          desc: "7月28日，全市青年企业家座谈会召开，深入学习贯彻习近平总书记“七一”重要讲话精神。",
-        },
-        {
-          title: "新浪网络大V齐聚「天空之橙」聚焦“五好”城市宣传推介",
-          desc: "9月23日晚，由淄博市委宣传部、市委网信办、新浪微博主办，微博名人堂、新浪山东承办的“V游记”之“美好淄味”大V行启动仪式，在「天空之橙双创艺术空间」举行。",
-          link: "https://mp.weixin.qq.com/s/1xWefd-qSQAY62c_DsrMmg",
-          cover: require("../assets/groupimg/20220222144921.jpg"),
-        },
-        {
-          title: "热烈祝贺淄博「新生代企业家论坛」在「天空之橙」成功举办",
-          link: "https://mp.weixin.qq.com/s/TMiokX96AQ75Yw3mHxJniw",
-          cover: require("../assets/groupimg/20220222145211.jpg"),
-          desc: "由淄博市工商联主办、新视野智库和天空之橙控股有限公司协办的淄博新生代企业家论坛在「天空之橙双创艺术空间」举办。",
-        },
-        {
-          title: "天空之橙受邀参加「淄博市青年企业家座谈会」并作为代表发言",
-          link: "https://mp.weixin.qq.com/s/WGbFPzITSrD9P7DPjHY6wA",
-          cover: require("../assets/groupimg/20220222145017.jpg"),
-          desc: "7月28日，全市青年企业家座谈会召开，深入学习贯彻习近平总书记“七一”重要讲话精神。",
-        },
-        {
-          title: "新浪网络大V齐聚「天空之橙」聚焦“五好”城市宣传推介",
-          desc: "9月23日晚，由淄博市委宣传部、市委网信办、新浪微博主办，微博名人堂、新浪山东承办的“V游记”之“美好淄味”大V行启动仪式，在「天空之橙双创艺术空间」举行。",
-          link: "https://mp.weixin.qq.com/s/1xWefd-qSQAY62c_DsrMmg",
-          cover: require("../assets/groupimg/20220222144921.jpg"),
-        },
-        {
-          title: "热烈祝贺淄博「新生代企业家论坛」在「天空之橙」成功举办",
-          link: "https://mp.weixin.qq.com/s/TMiokX96AQ75Yw3mHxJniw",
-          cover: require("../assets/groupimg/20220222145211.jpg"),
-          desc: "由淄博市工商联主办、新视野智库和天空之橙控股有限公司协办的淄博新生代企业家论坛在「天空之橙双创艺术空间」举办。",
-        },
-        {
-          title: "天空之橙受邀参加「淄博市青年企业家座谈会」并作为代表发言",
-          link: "https://mp.weixin.qq.com/s/WGbFPzITSrD9P7DPjHY6wA",
-          cover: require("../assets/groupimg/20220222145017.jpg"),
-          desc: "7月28日，全市青年企业家座谈会召开，深入学习贯彻习近平总书记“七一”重要讲话精神。",
-        },
-        {
-          title: "新浪网络大V齐聚「天空之橙」聚焦“五好”城市宣传推介",
-          desc: "9月23日晚，由淄博市委宣传部、市委网信办、新浪微博主办，微博名人堂、新浪山东承办的“V游记”之“美好淄味”大V行启动仪式，在「天空之橙双创艺术空间」举行。",
-          link: "https://mp.weixin.qq.com/s/1xWefd-qSQAY62c_DsrMmg",
-          cover: require("../assets/groupimg/20220222144921.jpg"),
-        },
-        {
-          title: "热烈祝贺淄博「新生代企业家论坛」在「天空之橙」成功举办",
-          link: "https://mp.weixin.qq.com/s/TMiokX96AQ75Yw3mHxJniw",
-          cover: require("../assets/groupimg/20220222145211.jpg"),
-          desc: "由淄博市工商联主办、新视野智库和天空之橙控股有限公司协办的淄博新生代企业家论坛在「天空之橙双创艺术空间」举办。",
-        },
-        {
-          title: "天空之橙受邀参加「淄博市青年企业家座谈会」并作为代表发言",
-          link: "https://mp.weixin.qq.com/s/WGbFPzITSrD9P7DPjHY6wA",
-          cover: require("../assets/groupimg/20220222145017.jpg"),
-          desc: "7月28日，全市青年企业家座谈会召开，深入学习贯彻习近平总书记“七一”重要讲话精神。",
-        },
-        {
-          title: "新浪网络大V齐聚「天空之橙」聚焦“五好”城市宣传推介",
-          desc: "9月23日晚，由淄博市委宣传部、市委网信办、新浪微博主办，微博名人堂、新浪山东承办的“V游记”之“美好淄味”大V行启动仪式，在「天空之橙双创艺术空间」举行。",
-          link: "https://mp.weixin.qq.com/s/1xWefd-qSQAY62c_DsrMmg",
-          cover: require("../assets/groupimg/20220222144921.jpg"),
-        },
-        {
-          title: "热烈祝贺淄博「新生代企业家论坛」在「天空之橙」成功举办",
-          link: "https://mp.weixin.qq.com/s/TMiokX96AQ75Yw3mHxJniw",
-          cover: require("../assets/groupimg/20220222145211.jpg"),
-          desc: "由淄博市工商联主办、新视野智库和天空之橙控股有限公司协办的淄博新生代企业家论坛在「天空之橙双创艺术空间」举办。",
-        },
-        {
-          title: "天空之橙受邀参加「淄博市青年企业家座谈会」并作为代表发言",
-          link: "https://mp.weixin.qq.com/s/WGbFPzITSrD9P7DPjHY6wA",
-          cover: require("../assets/groupimg/20220222145017.jpg"),
-          desc: "7月28日，全市青年企业家座谈会召开，深入学习贯彻习近平总书记“七一”重要讲话精神。",
-        },
-        {
-          title: "新浪网络大V齐聚「天空之橙」聚焦“五好”城市宣传推介",
-          desc: "9月23日晚，由淄博市委宣传部、市委网信办、新浪微博主办，微博名人堂、新浪山东承办的“V游记”之“美好淄味”大V行启动仪式，在「天空之橙双创艺术空间」举行。",
-          link: "https://mp.weixin.qq.com/s/1xWefd-qSQAY62c_DsrMmg",
-          cover: require("../assets/groupimg/20220222144921.jpg"),
-        },
-        {
-          title: "热烈祝贺淄博「新生代企业家论坛」在「天空之橙」成功举办",
-          link: "https://mp.weixin.qq.com/s/TMiokX96AQ75Yw3mHxJniw",
-          cover: require("../assets/groupimg/20220222145211.jpg"),
-          desc: "由淄博市工商联主办、新视野智库和天空之橙控股有限公司协办的淄博新生代企业家论坛在「天空之橙双创艺术空间」举办。",
-        },
-        {
-          title: "天空之橙受邀参加「淄博市青年企业家座谈会」并作为代表发言",
-          link: "https://mp.weixin.qq.com/s/WGbFPzITSrD9P7DPjHY6wA",
-          cover: require("../assets/groupimg/20220222145017.jpg"),
-          desc: "7月28日，全市青年企业家座谈会召开，深入学习贯彻习近平总书记“七一”重要讲话精神。",
-        },
-        {
-          title: "新浪网络大V齐聚「天空之橙」聚焦“五好”城市宣传推介",
-          desc: "9月23日晚，由淄博市委宣传部、市委网信办、新浪微博主办，微博名人堂、新浪山东承办的“V游记”之“美好淄味”大V行启动仪式，在「天空之橙双创艺术空间」举行。",
-          link: "https://mp.weixin.qq.com/s/1xWefd-qSQAY62c_DsrMmg",
-          cover: require("../assets/groupimg/20220222144921.jpg"),
-        },
-        {
-          title: "热烈祝贺淄博「新生代企业家论坛」在「天空之橙」成功举办",
-          link: "https://mp.weixin.qq.com/s/TMiokX96AQ75Yw3mHxJniw",
-          cover: require("../assets/groupimg/20220222145211.jpg"),
-          desc: "由淄博市工商联主办、新视野智库和天空之橙控股有限公司协办的淄博新生代企业家论坛在「天空之橙双创艺术空间」举办。",
-        },
-        {
-          title: "天空之橙受邀参加「淄博市青年企业家座谈会」并作为代表发言",
-          link: "https://mp.weixin.qq.com/s/WGbFPzITSrD9P7DPjHY6wA",
-          cover: require("../assets/groupimg/20220222145017.jpg"),
-          desc: "7月28日，全市青年企业家座谈会召开，深入学习贯彻习近平总书记“七一”重要讲话精神。",
-        },
-        {
-          title: "新浪网络大V齐聚「天空之橙」聚焦“五好”城市宣传推介",
-          desc: "9月23日晚，由淄博市委宣传部、市委网信办、新浪微博主办，微博名人堂、新浪山东承办的“V游记”之“美好淄味”大V行启动仪式，在「天空之橙双创艺术空间」举行。",
-          link: "https://mp.weixin.qq.com/s/1xWefd-qSQAY62c_DsrMmg",
-          cover: require("../assets/groupimg/20220222144921.jpg"),
-        },
-        {
-          title: "热烈祝贺淄博「新生代企业家论坛」在「天空之橙」成功举办",
-          link: "https://mp.weixin.qq.com/s/TMiokX96AQ75Yw3mHxJniw",
-          cover: require("../assets/groupimg/20220222145211.jpg"),
-          desc: "由淄博市工商联主办、新视野智库和天空之橙控股有限公司协办的淄博新生代企业家论坛在「天空之橙双创艺术空间」举办。",
-        },
-        {
-          title: "天空之橙受邀参加「淄博市青年企业家座谈会」并作为代表发言",
-          link: "https://mp.weixin.qq.com/s/WGbFPzITSrD9P7DPjHY6wA",
-          cover: require("../assets/groupimg/20220222145017.jpg"),
-          desc: "7月28日，全市青年企业家座谈会召开，深入学习贯彻习近平总书记“七一”重要讲话精神。",
-        },
-        {
-          title: "新浪网络大V齐聚「天空之橙」聚焦“五好”城市宣传推介",
-          desc: "9月23日晚，由淄博市委宣传部、市委网信办、新浪微博主办，微博名人堂、新浪山东承办的“V游记”之“美好淄味”大V行启动仪式，在「天空之橙双创艺术空间」举行。",
-          link: "https://mp.weixin.qq.com/s/1xWefd-qSQAY62c_DsrMmg",
-          cover: require("../assets/groupimg/20220222144921.jpg"),
-        },
-        {
-          title: "热烈祝贺淄博「新生代企业家论坛」在「天空之橙」成功举办",
-          link: "https://mp.weixin.qq.com/s/TMiokX96AQ75Yw3mHxJniw",
-          cover: require("../assets/groupimg/20220222145211.jpg"),
-          desc: "由淄博市工商联主办、新视野智库和天空之橙控股有限公司协办的淄博新生代企业家论坛在「天空之橙双创艺术空间」举办。",
-        },
-      ],
+      videolist: [],
       swipervideoOption: {
         slidesPerView: 4,
         direction: "vertical",
@@ -290,18 +176,71 @@ export default {
         slideToClickedSlide: true,
       },
       item: 8,
+      dialogVisible: false,
+      videoobj: {},
+      controls: "auto", //'fixed' 表示底部导航栏会一直固定显示；'auto' 表示底部导航栏在用户未产生任何交互操作后自动消失，默认的形式；
     };
   },
-  mounted() {
-    this.$nextTick(() => {
-      const swiperleft = this.$refs["swipervideoOption"].$swiper;
-      console.log(swiperleft);
-      // const swiperThumbs = this.$refs.swiperThumbs.$swiper;
-      // swiperleft.controller.control = swiperThumbs;
-      // swiperThumbs.controller.control = swiperleft;
-    });
+  created() {
+    this.getVideoTags();
+    this.getVideo();
   },
-  methods: {},
+  mounted() {
+    // this.$nextTick(() => {
+    //   const swiperleft = this.$refs["swipervideoOption"].$swiper;
+    //   console.log(swiperleft);
+    //   // const swiperThumbs = this.$refs.swiperThumbs.$swiper;
+    //   // swiperleft.controller.control = swiperThumbs;
+    //   // swiperThumbs.controller.control = swiperleft;
+    // });
+  },
+  methods: {
+    onsearch(value) {
+      console.log(value);
+      if (value.length > 3) {
+        this.getVideo();
+      }
+      if (value.length == 0) {
+        this.getVideo();
+      }
+    },
+    async getVideoTags() {
+      let res = await getVideoTags();
+      this.list = res;
+    },
+    async getVideo() {
+      let { tags_id = "", name = "" } = this.listQuery;
+      let res = [];
+      const loading = this.$loading({
+        lock: true,
+        text: "加载中",
+        spinner: "el-icon-loading",
+        background: "rgba(0, 0, 0, 0.7)",
+      });
+      res = await getVideo(this.listQuery);
+      // console.log(res, Math.floor(Math.random() * 1000));
+      res = res.map((item) => {
+        item["looknum"] = Math.floor(Math.random() * 1000);
+        return item;
+      });
+      this.videolist = res;
+      loading.close();
+    },
+    onclose() {
+      this.dialogVisible = false;
+      console.log(1);
+    },
+    lookvideo(index, data) {
+      this.videoobj = data;
+      this.dialogVisible = true;
+    },
+    // 获取数据
+    getlist(index, data) {
+      if (this.listQuery.tags_id == data.id) return;
+      this.listQuery.tags_id = data.id;
+      this.getVideo();
+    },
+  },
 };
 </script>
 
@@ -310,6 +249,7 @@ export default {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
+  padding-top: 10%;
   position: relative;
   display: flex;
   justify-content: center;
@@ -317,102 +257,117 @@ export default {
   .swiperContent {
     flex: 1;
     height: 100%;
-    .swiper {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      .swiper-button-prev,
-      .swiper-button-next {
-        outline: none;
-        top: calc(50%);
-      }
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
+    .searchStyle {
+      display: flex;
+      justify-content: flex-end;
+      padding: 20px 0;
     }
-    .swiper-container-par {
+    ul {
       width: 100%;
-      height: 100%;
-
+      height: 90%;
+      overflow: auto;
+      padding: 20px;
       box-sizing: border-box;
-      .swiper-slide {
-        width: 100%;
-        height: 100%;
-        .SwiperModelcontentStyle {
-          width: 100%;
-          height: 100%;
-          background-size: cover;
-          background-position: 50%;
-          background-repeat: no-repeat;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      li {
+        width: 31%;
+        margin-right: 2.2%;
+        cursor: pointer;
+        // background: brown;
+        height: 240px;
+        margin-bottom: 24px;
+        box-sizing: border-box;
+        box-shadow: 0 0 14px #8395bb;
+        background: #fff;
+        border-radius: 5px;
+        transition: all 0.5s ease;
+        overflow: hidden;
+        h4 {
+          text-align: left;
+          padding: 10px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
-        // img {
-        //   width: 100%;
-        //   height: 100%;
-        //   object-fit: cover;
-        // }
+        .videocover {
+          height: 70%;
+          background: #333;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+        .videodesc {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 10px;
+          box-sizing: border-box;
+        }
+        &:hover {
+          transform: scale(1.06);
+        }
       }
     }
   }
 
+  // 左边
   .typeswiper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 6;
     width: 20vw;
-    height: 100vh;
+    height: 100%;
+    flex-shrink: 0;
+    ul {
+      width: 100%;
+      height: 80%;
+      overflow-y: auto;
+
+      padding: 10px 20px 40px 0;
+      box-sizing: border-box;
+      li {
+        height: 50px;
+        line-height: 50px;
+        margin-bottom: 10px;
+        font-size: 18px;
+        box-sizing: border-box;
+        cursor: pointer;
+        border-left: 2px solid #fff;
+        &:hover {
+          box-shadow: 4px 6px 18px #8395bb;
+          border-left: 2px solid #8395bb;
+          color: #8395bb;
+        }
+      }
+      .iative {
+        box-shadow: 4px 6px 18px #8395bb;
+        border-left: 2px solid #8395bb;
+        color: #8395bb;
+      }
+    }
     .xian {
-      display: block;
-      height: 15%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      p {
-        width: 4px;
-        height: 100%;
-        background: #000;
-        border-radius: 5px;
-      }
-      // background: chartreuse;
+      height: 20%;
+      width: 2px;
+      background: #333;
+      margin: 0 auto;
     }
-    .swiper {
-      width: 100%;
-      height: 58%;
-      position: relative;
-      .swiper-button-prev,
-      .swiper-button-next {
-        outline: none;
-        top: calc(50%);
-      }
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
+  }
+}
+</style>
+<style lang="less">
+.vuecorevideoplayer {
+  min-height: 50vh;
+  .vcp-dashboard {
+    .vue-core-video-player-control:nth-child(2) {
+      display: none;
     }
-    .swiper-container-child {
-      height: 58%;
-      overflow: hidden;
-    }
-    .swiper-slide {
-      width: 100%;
-      height: 100%;
-      opacity: 0.4;
-      // height: 80px;
-      // line-height: 80px;
-      padding: 10px 0;
-      font-size: 30px;
-    }
-    .swiper-slide-active {
-      opacity: 1;
-      // border: 2px solid #fdb732;
-      font-weight: 600;
-      font-size: 40px;
-      // margin-top: -4px;
-      // border-radius: 5px;
-    }
+  }
+}
+.tcVideo {
+  .el-dialog__body {
+    padding: 0;
   }
 }
 </style>

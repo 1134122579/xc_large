@@ -9,6 +9,11 @@ import VueAwesomeSwiper from "vue-awesome-swiper";
 import "swiper/css/swiper.css";
 import "animate.css";
 import tagCloud from "v-tag-cloud";
+import VueCoreVideoPlayer from "vue-core-video-player";
+
+Vue.use(VueCoreVideoPlayer, {
+  lang: "zh-CN",
+});
 Vue.use(tagCloud);
 Vue.use(VueAwesomeSwiper /* { default options with global component } */);
 
